@@ -29,7 +29,7 @@ function MostrarRegistro(datos){
             <td>${persona.id}</td> 
             <td>${persona.nombre}</td> 
             <td>${persona.Apellido}</td> 
-            <td>${persona.corrreo}</td> 
+            <td>${persona.Correo}</td> 
             <td>
                 <button>Editar</button>
                 <button>Eliminar</button>
