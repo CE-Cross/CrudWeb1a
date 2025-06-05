@@ -1,3 +1,9 @@
+
+nav{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
 .add-button{
     position: fixed; /*El botón queda "Flotante" sobre el contenido*/
     bottom: 30px; /*Separación desde abajo*/
