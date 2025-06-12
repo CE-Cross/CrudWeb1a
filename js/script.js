@@ -124,4 +124,40 @@ function AbrirModalEditar(id, nombre, apellido, correo){
 
 }
 
-document.getElementById("frmEditar").addEventListener("submit")
+document.getElementById("frmEditar").addEventListener("submit", async e =>{    
+    e.preventDefault();//Evita que el formulario se envie de golpe
+    
+    //Capturamos los valores nuevos del formulario
+    const id = document.getElementById("txtIdEditar").value;
+    const nombre = document.getElementById("txtNombreEditar").value.trim();
+    const Apellido = document.getElementById("txtApellidoEditar").value.trim();
+    const Correo = document.getElementById("txtEmailEditar").value.trim();
+
+    //Validación de los campos
+    if(!id || !nombre || !Apellido || !Correo){
+        alert("Complete todos los campos");
+        return;//Evita que el codigo se siga ejecutando
+    }
+
+    //Llama a la API para enviar los datos
+    const respuesta = await fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({Correo, nombre, Apellido})
+    }); // llamada al endpoint
+  
+    if(respuesta.ok){
+        //Mensaje de Confitmación
+        alert("El registro fue actualizado correctamente")
+        
+        //Limpiar el formulario
+        document.getElementById("frmAgregar").reset();
+        //Cerrar el modal (dialog)
+        modalEditar.close();
+        //Recargar la tabla
+        ObtenerRegistros();
+    }
+    else{
+        alert("Hubo un error al actualizar")
+    }
+});
